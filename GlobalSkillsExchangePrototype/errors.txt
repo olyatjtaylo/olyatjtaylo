@@ -1,0 +1,64 @@
+ |ERROR:    Traceback (most recent call last):
+    |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/starlette/routing.py", line 730, in lifespan
+    |    async with self.lifespan_context(app) as maybe_state:
+    |  File "/openhands/miniforge3/lib/python3.11/contextlib.py", line 210, in __aenter__
+    |    return await anext(self.gen)
+    |           ^^^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/code/openhands/runtime/client/client.py", line 477, in lifespan
+    |    client = RuntimeClient(
+    |             ^^^^^^^^^^^^^^
+    |  File "/openhands/code/openhands/runtime/client/client.py", line 89, in __init__
+    |    self.browser = BrowserEnv(browsergym_eval_env)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/code/openhands/runtime/browser/browser_env.py", line 38, in __init__
+    |    self.init_browser()
+    |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/tenacity/__init__.py", line 336, in wrapped_f
+    |    return copy(f, *args, **kw)
+    |           ^^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/tenacity/__init__.py", line 475, in __call__
+    |    do = self.iter(retry_state=retry_state)
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/tenacity/__init__.py", line 376, in iter
+    |    result = action(retry_state)
+    |             ^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/tenacity/__init__.py", line 398, in <lambda>
+    |    self._add_action_func(lambda rs: rs.outcome.result())
+    |                                     ^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/miniforge3/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    |    return self.__get_result()
+    |           ^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/miniforge3/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    |    raise self._exception
+    |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/tenacity/__init__.py", line 478, in __call__
+    |    result = fn(*args, **kwargs)
+    |             ^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/code/openhands/runtime/browser/browser_env.py", line 61, in init_browser
+    |    self.process.start()
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/process.py", line 121, in start
+    |    self._popen = self._Popen(self)
+    |                  ^^^^^^^^^^^^^^^^^
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/context.py", line 224, in _Popen
+    |    return _default_context.get_context().Process._Popen(process_obj)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/context.py", line 288, in _Popen
+    |    return Popen(process_obj)
+    |           ^^^^^^^^^^^^^^^^^^
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/popen_spawn_posix.py", line 32, in __init__
+    |    super().__init__(process_obj)
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/popen_fork.py", line 19, in __init__
+    |    self._launch(process_obj)
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/popen_spawn_posix.py", line 47, in _launch
+    |    reduction.dump(process_obj, fp)
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/reduction.py", line 60, in dump
+    |    ForkingPickler(file, protocol).dump(obj)
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/connection.py", line 985, in reduce_connection
+    |    df = reduction.DupFd(conn.fileno())
+    |                         ^^^^^^^^^^^^^
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/connection.py", line 171, in fileno
+    |    self._check_closed()
+    |  File "/openhands/miniforge3/lib/python3.11/multiprocessing/connection.py", line 137, in _check_closed
+    |    raise OSError("handle is closed")
+    |OSError: handle is closed
+    |
+    |ERROR:    Application startup failed. Exiting.
+    |ERROR conda.cli.main_run:execute(125): `conda run PYTHONUNBUFFERED=1 poetry run python -u -m openhands.runtime.client.client 43289 --working-dir /workspace --username openhands --user-id 1000` failed. (See above for error)
