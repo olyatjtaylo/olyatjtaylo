@@ -171,3 +171,5 @@ section {
     }
   }
 }
+
+docker pull ghcr.io/all-hands-ai/runtime:od_v0.9.0_image_nikolaik_python-nodejs_tag_python3.11-nodejs22
