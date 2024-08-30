@@ -1,4 +1,47 @@
- |ERROR:    Traceback (most recent call last):
+# Use a base image that has Python installed
+FROM python:3.11-slim
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Miniconda
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda.sh \
+    && bash /miniconda.sh -b -p /opt/miniconda \
+    && rm /miniconda.sh
+
+ENV PATH="/opt/miniconda/bin:$PATH"
+
+# Install Poetry
+RUN pip install poetry
+
+# Set working directory
+WORKDIR /app
+
+# Copy the application files
+COPY . /app
+
+# Install dependencies from environment.yml
+RUN conda env create -f environment.yml
+
+# Activate the environment
+SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
+
+# Install dependencies using Poetry
+RUN poetry install
+
+# Run the application
+CMD ["conda", "run", "-n", "myenv", "poetry", "run", "python", "-u", "main.py"]
+
+
+
+///
+
+
+
+
+ERROR:    Traceback (most recent call last):
     |  File "/openhands/poetry/openhands-ai-5O4_aCHf-py3.11/lib/python3.11/site-packages/starlette/routing.py", line 730, in lifespan
     |    async with self.lifespan_context(app) as maybe_state:
     |  File "/openhands/miniforge3/lib/python3.11/contextlib.py", line 210, in __aenter__
